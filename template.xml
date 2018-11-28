@@ -1,0 +1,56 @@
+<template format="4"
+        revision="1"
+        name="Fragment with ViewModel Template"
+        description="Creates a new Fragment class with ViewModel and ViewModelFactory">
+
+    <category value="Other"/>
+
+    <parameter id="className"
+        name="Functionality Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="Custom"
+        help="The name of the functionality that requires this Fragment"/>
+
+    <parameter
+        id="useDatabinding"
+        name="Configure databinding?"
+        type="boolean"
+        default="true"
+        help="Generate databinding for the fragment" />
+
+    <parameter
+        id="useRecyclerView"
+        name="Configure a RecyclerView and its adapter?"
+        type="boolean"
+        default="true"
+        help="Generate RecyclerView with Adapter for the fragment" />
+
+    <parameter
+        id="hasNavigateNext"
+        name="Configure navigation to next destinations?"
+        type="boolean"
+        default="true"
+        help="Generate navigateNext LiveData" />
+
+    <parameter
+        id="includeLayout"
+        name="Create layout XML?"
+        type="boolean"
+        default="true"
+        help="Generate a layout XML for the fragment" />
+
+    <parameter
+        id="fragmentName"
+        name="Fragment Layout Name"
+        type="string"
+        constraints="layout|nonempty|unique"
+        default="fragment_blank"
+        visibility="includeLayout"
+        suggest="${classToResource(className)}_layout"
+        help="The name of the layout to create" />
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
