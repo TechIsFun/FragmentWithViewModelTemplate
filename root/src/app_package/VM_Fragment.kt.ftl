@@ -57,20 +57,20 @@ class ${className}Fragment: Fragment() {
         binding.setVariable(BR.viewModel, viewModel)
         binding.executePendingBindings()
 
-        viewModel.loadingLiveData.observe(this, Observer {
+        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
             renderLoading(it == true)
         })
 
-        viewModel.errorLiveData.observe(this, Observer {
+        viewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
             it?.let{ renderError(it) }
         })
 
-        viewModel.uiModelLiveData.observe(this, Observer {
+        viewModel.uiModelLiveData.observe(viewLifecycleOwner, Observer {
             it?.let{ renderUiModel(it) }
         })
 
 <#if hasNavigateNext>
-        viewModel.navigateNext.observe(this, Observer {
+        viewModel.navigateNext.observe(viewLifecycleOwner, Observer {
             navigate(R.id.)
         })
 </#if>
