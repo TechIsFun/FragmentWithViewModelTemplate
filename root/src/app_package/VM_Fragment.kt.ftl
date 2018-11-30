@@ -54,6 +54,7 @@ class ${className}Fragment: Fragment() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(${className}ViewModel::class.java)
         
+        binding.setLifecycleOwner(viewLifecycleOwner)
         binding.setVariable(BR.viewModel, viewModel)
         binding.executePendingBindings()
 
@@ -101,7 +102,7 @@ class ${className}Fragment: Fragment() {
 }
 
 <#if useRecyclerView>
-private class ${className}Adapter(items: List<Any>, viewModel: ViewModel) : DataBindingRecyclerViewAdapter(items, viewModel) {
+private class ${className}Adapter(items: List<Any>, viewModel: ViewModel) : DataBindingRecyclerViewAdapter(items, viewModel, viewLifecycleOwner) {
     override fun getLayoutIdForPosition(position: Int): Int {
         val item = getObjForPosition(position)
         return when (item) {
