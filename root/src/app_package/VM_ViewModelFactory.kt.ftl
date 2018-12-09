@@ -2,7 +2,7 @@ package ${packageName}
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.CoroutineDispatcher
-import javax.inject.Inject
+import javax.inject.*
 
 class ${className}ViewModelFactory @Inject constructor(
             private val coroutineDispatcher: Provider<CoroutineDispatcher>,

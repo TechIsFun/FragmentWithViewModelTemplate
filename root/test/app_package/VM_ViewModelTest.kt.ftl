@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.*
 import org.junit.*
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 class ${className}ViewModelTest {
 

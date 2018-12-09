@@ -27,6 +27,13 @@
         help="Generate RecyclerView with Adapter for the fragment" />
 
     <parameter
+        id="usePagingLibrary"
+        name="Configure android Paging Library?"
+        type="boolean"
+        default="true"
+        help="Generate code to retrieve data using Paging library" />
+
+    <parameter
         id="hasNavigateNext"
         name="Configure navigation to next destinations?"
         type="boolean"

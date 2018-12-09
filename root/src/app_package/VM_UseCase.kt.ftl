@@ -1,13 +1,13 @@
 package ${packageName}
 
-import com.andreamaglie.domain.MediatorUseCase
-import com.andreamaglie.domain.Repository
-import com.andreamaglie.domain.Result
+import com.andreamaglie.domain.*
 import timber.log.Timber
 import java.lang.Exception
 import javax.inject.Inject
 
-class ${className}UseCase @Inject constructor(private val repository: Repository): MediatorUseCase<${className}UseCaseParams, Unit>() {
+<#if usePagingLibrary>
+class ${className}UseCase @Inject constructor(private val repository: Repository): PaginatedUseCase<${className}UseCaseParams, ${className}Model>() {
+
     override suspend fun execute(parameters: ${className}UseCaseParams) {
         result.postValue(Result.Loading)
 
@@ -20,6 +20,15 @@ class ${className}UseCase @Inject constructor(private val repository: Repository
         }
     }
 }
+<#else>
+class ${className}UseCase @Inject constructor(private val repository: Repository): MediatorUseCase<${className}UseCaseParams, Unit>() {
+
+    override fun execute(parameters: ${className}Params, pagedListConfig: PagedList.Config): PagedResult<${className}Model> {
+        return repository.query${className}(pagedListConfig)
+    }
+}
+</#if>
+
 
 data class ${className}UseCaseParams(
     val param1: String,

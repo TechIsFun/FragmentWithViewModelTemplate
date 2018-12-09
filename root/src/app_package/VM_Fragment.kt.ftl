@@ -99,16 +99,15 @@ class ${className}Fragment: Fragment() {
 	   activity?.renderError(error)
     }
 
-}
-
 <#if useRecyclerView>
-private class ${className}Adapter(items: List<Any>, viewModel: ViewModel) : DataBindingRecyclerViewAdapter(items, viewModel, viewLifecycleOwner) {
-    override fun getLayoutIdForPosition(position: Int): Int {
-        val item = getObjForPosition(position)
-        return when (item) {
-            is MyItemModel -> R.layout.item_layout
-            else -> throw RuntimeException("unknown model: $item")
+    private inner class ${className}Adapter(items: List<Any>, viewModel: ViewModel) : DataBindingRecyclerViewAdapter(items, viewModel, viewLifecycleOwner) {
+        override fun getLayoutIdForPosition(position: Int): Int {
+            val item = getObjForPosition(position)
+            return when (item) {
+                is MyItemModel -> R.layout.item_layout
+                else -> throw RuntimeException("unknown model: $item")
+            }
         }
     }
-}
 </#if>
+}
