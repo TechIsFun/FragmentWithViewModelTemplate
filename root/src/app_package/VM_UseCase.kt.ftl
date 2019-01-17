@@ -8,6 +8,14 @@ import javax.inject.Inject
 <#if usePagingLibrary>
 class ${className}UseCase @Inject constructor(private val repository: Repository): PaginatedUseCase<${className}UseCaseParams, ${className}Model>() {
 
+    override fun execute(parameters: ${className}UseCaseParams, pagedListConfig: PagedList.Config): PagedResult<${className}Model> {
+        return repository.query${className}(pagedListConfig)
+    }
+
+}
+<#else>
+class ${className}UseCase @Inject constructor(private val repository: Repository): MediatorUseCase<${className}UseCaseParams, Unit>() {
+
     override suspend fun execute(parameters: ${className}UseCaseParams) {
         result.postValue(Result.Loading)
 
@@ -19,13 +27,7 @@ class ${className}UseCase @Inject constructor(private val repository: Repository
             result.postValue(Result.Error(e))
         }
     }
-}
-<#else>
-class ${className}UseCase @Inject constructor(private val repository: Repository): MediatorUseCase<${className}UseCaseParams, Unit>() {
-
-    override fun execute(parameters: ${className}Params, pagedListConfig: PagedList.Config): PagedResult<${className}Model> {
-        return repository.query${className}(pagedListConfig)
-    }
+   
 }
 </#if>
 
