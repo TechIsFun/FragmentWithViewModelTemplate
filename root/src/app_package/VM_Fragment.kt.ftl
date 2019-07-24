@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import dagger.android.support.AndroidSupportInjection
 import ${packageName}.R
 import javax.inject.Inject
